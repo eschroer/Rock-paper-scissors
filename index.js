@@ -1,5 +1,6 @@
 let playerScore = 0;
 let computerScore = 0;
+const btns = document.querySelectorAll("button");
 const computerSelText = document.querySelector(".computer-sel");
 const playerSelText = document.querySelector(".player-sel");
 const playerScoreText = document.querySelector(".player-score");
@@ -8,14 +9,13 @@ const roundOutcome = document.querySelector(".round-outcome");
 const gameOutcomeText = document.querySelector(".game-outcome");
 
 function playGame(){
-    const btns = document.querySelectorAll("button");
     btns.forEach(function(item){
-        item.addEventListener("click", function(){
+        item.addEventListener("click", function getChoices(){
             const userSelection = item.className
             const computerSelection = getComputerChoice();
                         
-            computerSelText.textContent = `Computer: ${computerSelection}`;
-            playerSelText.textContent = `Player: ${userSelection}`;
+            computerSelText.textContent = `Computer: ${computerSelection[0].toUpperCase() + computerSelection.substring(1)}`;
+            playerSelText.textContent = `Player: ${userSelection[0].toUpperCase() + userSelection.substring(1)}`;
 
             trackScore(compareChoices(userSelection,computerSelection));
             if (playerScore === 5 || computerScore === 5){
@@ -81,15 +81,12 @@ function trackScore(roundOutcome) {
     }
     playerScoreText.textContent = `Player: ${playerScore}`;
     computerScoreText.textContent = `Computer: ${computerScore}`;
-    console.log(`The score is: \nPlayer: ${playerScore}\nComputer: ${computerScore}`)
 }
 function compareScore(){
     if (playerScore > computerScore){
-        console.log("You win the game!")
-        gameOutcomeText.textContent = "You win the game!"
+        roundOutcome.textContent = "You win the game!"
     } else if (computerScore > playerScore) {
-        gameOutcomeText.textContent = "You lose the game!"
-        console.log("You lose the game!")
+        roundOutcome.textContent = "You lose the game!"
     } 
 }
 

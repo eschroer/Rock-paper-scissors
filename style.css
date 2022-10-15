@@ -1,0 +1,48 @@
+body {
+    background-color: #DFF6FF;
+    color: #06283D;
+    font-family: "Roboto", sans-serif;
+}
+h1 {
+    text-align: center;
+}
+.btn-container{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+button {
+    margin: 20px;
+    padding: 32px;
+    border: none;
+    background-color: #256D85;
+    color: #DFF6FF;
+    font-weight: 900;
+    font-size: 1.5rem;
+}
+button:hover {
+    background-color: #47B5FF;
+    color: #06283D;
+    border: #06283D 3px solid;
+}
+.sel-container, .score-container{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 2px;
+    margin: 16px 32px;
+    background-color: #47B5FF;
+    padding: 32px 0px;
+    font-size: 1.1rem;
+    font-weight: 900;
+}
+.outcome-container {
+    margin: 16px 32px;
+    background-color: #47B5FF;
+    padding: 32px 0px;
+    font-size: 1.1rem;
+    font-weight: 900;
+}
+.round-outcome, .game-outcome {
+    text-align: center;
+}
