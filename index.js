@@ -1,5 +1,11 @@
 let playerScore = 0;
 let computerScore = 0;
+const computerSelText = document.querySelector(".computer-sel");
+const playerSelText = document.querySelector(".player-sel");
+const playerScoreText = document.querySelector(".player-score");
+const computerScoreText = document.querySelector(".computer-score");
+const roundOutcome = document.querySelector(".round-outcome");
+const gameOutcomeText = document.querySelector(".game-outcome");
 
 function playGame(){
     const btns = document.querySelectorAll("button");
@@ -7,15 +13,17 @@ function playGame(){
         item.addEventListener("click", function(){
             const userSelection = item.className
             const computerSelection = getComputerChoice();
-            const computerSelText = document.querySelector(".computer-sel");
-            const playerSelText = document.querySelector(".player-sel")
-            
-            computerSelText.textContent = `Computer: ${computerSelection}`
-            playerSelText.textContent = `Player: ${userSelection}`
+                        
+            computerSelText.textContent = `Computer: ${computerSelection}`;
+            playerSelText.textContent = `Player: ${userSelection}`;
 
             trackScore(compareChoices(userSelection,computerSelection));
             if (playerScore === 5 || computerScore === 5){
                 compareScore();
+                const restartBtn = document.createElement("button");
+                restartBtn.textContent = "Restart";
+                gameOutcomeText.appendChild(restartBtn);
+                restartBtn.addEventListener("click", restartGame);
             }
         })
     })
@@ -30,8 +38,6 @@ function getComputerChoice(){
 }
 
 function compareChoices(userChoice, computerChoice){
-    const roundOutcome = document.querySelector(".round-outcome");
-
     if (userChoice === "rock") {
         if (computerChoice === "scissors"){
             roundOutcome.textContent = "You win!"
@@ -68,9 +74,6 @@ function compareChoices(userChoice, computerChoice){
     }
 }
 function trackScore(roundOutcome) {
-    const playerScoreText = document.querySelector(".player-score");
-    const computerScoreText = document.querySelector(".computer-score");
-
     if (roundOutcome === "You win!"){
         playerScore++
     } else if (roundOutcome === "You lose!") {
@@ -81,7 +84,6 @@ function trackScore(roundOutcome) {
     console.log(`The score is: \nPlayer: ${playerScore}\nComputer: ${computerScore}`)
 }
 function compareScore(){
-    const gameOutcomeText = document.querySelector(".game-outcome");
     if (playerScore > computerScore){
         console.log("You win the game!")
         gameOutcomeText.textContent = "You win the game!"
@@ -89,5 +91,16 @@ function compareScore(){
         gameOutcomeText.textContent = "You lose the game!"
         console.log("You lose the game!")
     } 
+}
+
+function restartGame(){
+    playerScore = 0;
+    computerScore = 0;
+    playerSelText.textContent = ""
+    computerSelText.textContent = ""
+    roundOutcome.textContent = ""
+    gameOutcomeText.textContent = "";
+    playerScoreText.textContent = `Player: ${playerScore}`;
+    computerScoreText.textContent = `Computer: ${computerScore}`;
 }
 playGame();
