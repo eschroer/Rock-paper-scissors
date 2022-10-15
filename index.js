@@ -24,6 +24,9 @@ function playGame(){
                 restartBtn.textContent = "Restart";
                 gameOutcomeText.appendChild(restartBtn);
                 restartBtn.addEventListener("click", restartGame);
+                btns.forEach(function(btn){
+                    btn.classList.add("hidden")
+                })
             }
         })
     })
@@ -99,5 +102,8 @@ function restartGame(){
     gameOutcomeText.textContent = "";
     playerScoreText.textContent = `Player: ${playerScore}`;
     computerScoreText.textContent = `Computer: ${computerScore}`;
+    btns.forEach(function(btn){
+        btn.classList.remove("hidden")
+    })
 }
 playGame();

@@ -46,3 +46,6 @@ button:hover {
 .round-outcome, .game-outcome {
     text-align: center;
 }
+.hidden {
+    display: none;
+}
